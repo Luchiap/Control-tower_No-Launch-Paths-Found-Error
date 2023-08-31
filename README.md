@@ -24,7 +24,7 @@ Go to CloudTrail [1] --> event history --> Lookup attributes --> Event name --> 
 
 Check the most recent API record, open it and check the principal that performed the action. 
 
-###Case1, logged in as root
+### Case1, logged in as root
 Go to CloudTrail [1] --> event history --> Lookup attributes --> Event name --> type down 'ListLaunchPaths'
 
 Logout as root and login as a user or role that has the necessary permissions of using Control Tower
