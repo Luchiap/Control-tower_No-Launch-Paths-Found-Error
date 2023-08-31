@@ -26,7 +26,10 @@ Check the most recent API record, open it and check the principal that performed
 
 ### Case 1, logged in as root
 
-Logout as root and login as a user or role that has the necessary permissions of using Control Tower
+Logout and login as a user or role that has the necessary permissions of using Control Tower.
+
+### Case 2, logged in as user/role with no access to service catalog portfolio
+
 
 
 
