@@ -10,6 +10,11 @@ You will get this error when you try to perform actions on Control Tower (creati
 Also, when:
 + The SSO user of the account has not been added to the ‘AWSAccountFactory’ or ‘AWSServiceCatalogAdmins’ Groups in IAM Identity Center
 
+## Example:
+Trying to create an account with root access will give you this red bar preventing you from doing so.
+![NoLaunch](https://github.com/Luchiap/Control-tower_No-Launch-Paths-Found-Error/assets/83933068/808ebc46-fc1d-40e3-b831-16483063799c)
+
+
 ## How to fix
 Go to CloudTrail [1] --> event history --> Lookup attributes --> Event name --> type down 'ListLaunchPaths'
 
