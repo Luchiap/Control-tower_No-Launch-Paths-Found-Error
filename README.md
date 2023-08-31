@@ -10,4 +10,9 @@ You will get this error when you try to perform actions on Control Tower (creati
 Also, when:
 + The SSO user of the account has not been added to the ‘AWSAccountFactory’ or ‘AWSServiceCatalogAdmins’ Groups in IAM Identity Center
 
-## How to fix:
+## How to fix
+Go to CloudTrail [1] --> event history --> Lookup attributes --> Event name --> type down 'ListLaunchPaths'
+
+
+
+[1] https://us-east-1.console.aws.amazon.com/cloudtrail/home?region=us-east-1#/events?EventName=ListLaunchPaths
