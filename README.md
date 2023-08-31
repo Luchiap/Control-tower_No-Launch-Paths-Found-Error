@@ -18,7 +18,7 @@ Trying to create an account when you are logged in as root access will give you 
 
 ## How to troubleshoot and how to fix
 
-Go to CloudTrail [1] --> event history --> Lookup attributes --> Event name --> type down 'ListLaunchPaths'
+Go to CloudTrail [1](https://us-east-1.console.aws.amazon.com/cloudtrail/home?region=us-east-1#/events?EventName=ListLaunchPaths) --> event history --> Lookup attributes --> Event name --> type down 'ListLaunchPaths'
 
 ![ListLaunch1](https://github.com/Luchiap/Control-tower_No-Launch-Paths-Found-Error/assets/83933068/9b26351e-5626-43c7-94d0-417f635b33b1)
 
