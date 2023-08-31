@@ -9,3 +9,5 @@ You will get this error when you try to perform actions on Control Tower (creati
 
 Also, when:
 + The SSO user of the account has not been added to the ‘AWSAccountFactory’ or ‘AWSServiceCatalogAdmins’ Groups in IAM Identity Center
+
+## How to fix:
