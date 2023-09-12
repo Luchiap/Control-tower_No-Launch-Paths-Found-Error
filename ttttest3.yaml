@@ -1,0 +1,69 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: CloudFormation stack to fetch an SSM parameter using Lambda.
+Parameters:
+  ParameterName:
+    Type: String
+    Description: Name of the parameter to retrieve
+  RegionToRetrieve:
+    Type: String
+    Description: Region to retrieve from
+Resources:
+  CustomResource:
+    Type: Custom::RetrieveSSMParameter
+    Properties:
+      ServiceToken: !GetAtt CustomLambdaFunction.Arn
+      ParameterName1: !Ref ParameterName
+      RegionToRetrieve1: !Ref RegionToRetrieve
+  CustomLambdaFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs18.x
+      Timeout: 60
+      Role: !GetAtt CustomLambdaRole.Arn
+      Code:
+        ZipFile: |
+          const { SSMClient, GetParameterCommand } = require("@aws-sdk/client-ssm");
+          const cfnresponse = require('cfn-response');
+          const client = new SSMClient({ region: "us-east-2" });
+          
+          exports.handler = async (event, context) => {
+            const input = {
+              Name: "test",
+            };
+            try {
+              const command = new GetParameterCommand(input);
+              const response = await client.send(command);
+              const responseData = {
+                Data: response.Parameter?.Value
+              };
+              return cfnresponse.send(event, context, cfnresponse.SUCCESS, responseData);
+            } catch (error) {
+              console.error('Error retrieving the parameter:', error);
+              return cfnresponse.send(event, context, cfnresponse.FAILED, {});
+            }
+          };
+  CustomLambdaRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: LambdaExecutionRole6
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: LambdaExecutionPolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - '*'
+                Resource: '*'
+Outputs:
+  ParameterOutput:
+    Description: The parameter value returned from the Lambda function
+    Value: !GetAtt CustomResource.Data
