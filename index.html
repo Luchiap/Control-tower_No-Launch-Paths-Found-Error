@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google-site-verification" content="fZ9xgUyzBPjeSp76LSVXHV3OcGwBnzzcdv4SFFEnNEc" />
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>ControlTower_NoLaunchPathsFound</title>
+<meta name="generator" content="Jekyll v3.9.3" />
+<meta property="og:title" content="ControlTower_NoLaunchPathsFound" />
+<meta property="og:locale" content="en_US" />
+<link rel="canonical" href="https://luchiap.github.io/ControlTower_NoLaunchPathsFound/" />
+<meta property="og:url" content="https://luchiap.github.io/ControlTower_NoLaunchPathsFound/" />
+<meta property="og:site_name" content="ControlTower_NoLaunchPathsFound" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="ControlTower_NoLaunchPathsFound" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","headline":"ControlTower_NoLaunchPathsFound","name":"ControlTower_NoLaunchPathsFound","url":"https://luchiap.github.io/ControlTower_NoLaunchPathsFound/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/ControlTower_NoLaunchPathsFound/assets/css/style.css?v=89390d75da4ce5e26f322029ead12cb6d55ec660">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/ControlTower_NoLaunchPathsFound/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      
+      <h1><a href="https://luchiap.github.io/ControlTower_NoLaunchPathsFound/">ControlTower_NoLaunchPathsFound</a></h1>
+      
+
+      <p><a href="">Uplgoogle-site-verification: googleed03c370a86d4d6f.htmloading googleed03c370a86d4d6f.html…</a></p>
+
+<h1 id="no-launch-paths-found-error">No Launch Paths Found Error</h1>
+
+<h2 id="cause-of-error">Cause of error:</h2>
+<p>You will get this error when you try to perform actions on Control Tower (creating/enrolling/updating an account) with the wrong principal such as:</p>
+<ul>
+  <li>Root user (this will always fail)</li>
+  <li>A role/user that has not been added to the ‘Access’ tab of the ‘AWS Control Tower Account Factory Portfolio’ in Service Catalog. It may also be missing the servicecatalog:ListLaunchPaths permission.</li>
+</ul>
+
+<p>Also, when:</p>
+<ul>
+  <li>The SSO user of the account has not been added to the ‘AWSAccountFactory’ or ‘AWSServiceCatalogAdmins’ Groups in IAM Identity Center</li>
+</ul>
+
+<h2 id="example">Example:</h2>
+<p>Trying to create an account when you are logged in as root access will give you this red bar preventing you from doing so.</p>
+
+<p><img src="https://github.com/Luchiap/Control-tower_No-Launch-Paths-Found-Error/assets/83933068/808ebc46-fc1d-40e3-b831-16483063799c" alt="NoLaunch" /></p>
+
+<h2 id="how-to-troubleshoot-and-how-to-fix">How to troubleshoot and how to fix</h2>
+
+<p>Go to CloudTrail <a href="https://us-east-1.console.aws.amazon.com/cloudtrail/home?region=us-east-1#/events?EventName=ListLaunchPaths">[1]</a> –&gt; event history –&gt; Lookup attributes –&gt; Event name –&gt; type down ‘ListLaunchPaths’</p>
+
+<p><img src="https://github.com/Luchiap/Control-tower_No-Launch-Paths-Found-Error/assets/83933068/9b26351e-5626-43c7-94d0-417f635b33b1" alt="ListLaunch1" /></p>
+
+<p>Check the most recent API record, open it and check the principal that performed the action.</p>
+
+<h3 id="case-1-logged-in-as-root">Case 1, logged in as root</h3>
+
+<p>If you were logged in as root, you will need to logout and login as a user or role that has the necessary permissions of using Control Tower.</p>
+
+<h3 id="case-2-logged-in-as-userrole">Case 2, logged in as user/role</h3>
+
+<p>If you were logged in as user/role and still got the same error,</p>
+
+<p>Go to Service Catalog –&gt; Portfolios –&gt; AWS Control Tower Account Factory Portfolio –&gt; Access.</p>
+
+<p>Check if your user/role is listed here. If it’s not then you will need to add it. Click on Grant Access and follow the steps.</p>
+
+<p>In my case, I am logged in as adminuser, this user has to be appear in this list.</p>
+
+<p><img src="https://github.com/Luchiap/Control-tower_No-Launch-Paths-Found-Error/assets/83933068/0601bc18-5ffe-4251-a205-643c3e6a3b81" alt="Service" /></p>
+
+<h3 id="case-3-logged-in-as-userrole-with-access-to-portfolio">Case 3, logged in as user/role with access to portfolio</h3>
+
+<p>If you were logged in as user/role and checked that you had access to the portfolio, you will need to check if the SSO user of your management account is part of group AWSAccountFactory or AWSServiceCatalogAdmins in IAM Identity Center. It must be part of one of them at minimum. 
+See below.</p>
+
+<p><img src="https://github.com/Luchiap/Control-tower_No-Launch-Paths-Found-Error/assets/83933068/566dd886-ea54-4976-99a2-d1cfc7dad2d2" alt="AccountFactory" /></p>
+
+<h2 id="references">References:</h2>
+
+<p>[1] https://us-east-1.console.aws.amazon.com/cloudtrail/home?region=us-east-1#/events?EventName=ListLaunchPaths</p>
+
+
+      
+      <div class="footer border-top border-gray-light mt-5 pt-3 text-right text-gray">
+        This site is open source. <a href="https://github.com/Luchiap/ControlTower_NoLaunchPathsFound/edit/main/README.md">Improve this page</a>.
+      </div>
+      
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js" integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
+    <script>anchors.add();</script>
+  </body>
+</html>
