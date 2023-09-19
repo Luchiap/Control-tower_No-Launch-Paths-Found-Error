@@ -1,4 +1,13 @@
-<meta name="google-site-verification" content="fZ9xgUyzBPjeSp76LSVXHV3OcGwBnzzcdv4SFFEnNEc" />
+<!DOCTYPE html> <!-- Document type declaration -->
+<html>
+  <head>
+    <title>Your Title Here</title> <!-- Title of the webpage, displayed in the browser tab -->
+    <meta name="google-site-verification" content="fZ9xgUyzBPjeSp76LSVXHV3OcGwBnzzcdv4SFFEnNEc" />
+  </head>
+  <body>
+    <!-- Your content goes here -->
+  </body>
+</html>
 google-site-verification fZ9xgUyzBPjeSp76LSVXHV3OcGwBnzzcdv4SFFEnNEc
 
 # No Launch Paths Found Error
