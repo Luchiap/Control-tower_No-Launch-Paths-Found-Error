@@ -1,7 +1,6 @@
 <!DOCTYPE html> <!-- Document type declaration -->
 <html>
   <head>
-    <title>Your Title Here</title> <!-- Title of the webpage, displayed in the browser tab -->
     <meta name="google-site-verification" content="fZ9xgUyzBPjeSp76LSVXHV3OcGwBnzzcdv4SFFEnNEc" />
   </head>
   <body>
