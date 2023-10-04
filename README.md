@@ -40,9 +40,9 @@ In my case, I am logged in as adminuser, this user has to be appear in this list
 
 ![Service](https://github.com/Luchiap/Control-tower_No-Launch-Paths-Found-Error/assets/83933068/0601bc18-5ffe-4251-a205-643c3e6a3b81)
 
-### Case 3, logged in as user/role with access to portfolio
+### Case 3, logged in as SSO user
 
-If you were logged in as user/role and checked that you had access to the portfolio, you will need to check if the SSO user of your management account is part of group AWSAccountFactory or AWSServiceCatalogAdmins in IAM Identity Center. It must be part of one of them at minimum. 
+If you were logged in as an SSO user, you will need to check if the SSO user of your management account is part of group AWSAccountFactory or AWSServiceCatalogAdmins in IAM Identity Center. It must be part of one of them at minimum. 
 See below.
 
 ![AccountFactory](https://github.com/Luchiap/Control-tower_No-Launch-Paths-Found-Error/assets/83933068/566dd886-ea54-4976-99a2-d1cfc7dad2d2)
